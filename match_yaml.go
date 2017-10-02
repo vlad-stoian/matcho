@@ -50,14 +50,14 @@ func (matcher *MatchYAMLWithDiffsMatcher) Match(actual interface{}) (success boo
 func (matcher *MatchYAMLWithDiffsMatcher) FailureMessage(actual interface{}) (message string) {
 	actualString, expectedString, _ := matcher.toNormalisedStrings(actual)
 	message = format.Message(actualString, "to match YAML of", expectedString)
-	message = fmt.Sprintf("%s\nDiffs: (expected vs actual)\n%s\n", message, strings.Join(matcher.Diffs, "\n"))
+	message = fmt.Sprintf("%s\nDiffs: (actual vs expected)\n%s\n", message, strings.Join(matcher.Diffs, "\n"))
 	return message
 }
 
 func (matcher *MatchYAMLWithDiffsMatcher) NegatedFailureMessage(actual interface{}) (message string) {
 	actualString, expectedString, _ := matcher.toNormalisedStrings(actual)
 	message = format.Message(actualString, "not to match YAML of", expectedString)
-	message = fmt.Sprintf("%s\nDiffs: (expected vs actual)\n%s\n", message, strings.Join(matcher.Diffs, "\n"))
+	message = fmt.Sprintf("%s\nDiffs: (actual vs expected)\n%s\n", message, strings.Join(matcher.Diffs, "\n"))
 
 	return message
 }
